@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   InternalServerErrorException,
@@ -8,6 +9,7 @@ import { User } from "./models/user.model"
 import { AuthSignUpDto } from "./dto/auth-signup.dto"
 import * as bcrypt from "@phc/bcrypt"
 import { UniqueConstraintError } from "sequelize"
+import { AuthSignInDto } from "./dto/auth-signin.dto"
 
 @Injectable()
 export class AuthService {
@@ -29,6 +31,22 @@ export class AuthService {
     }
 
     return { msg: "User created" }
+  }
+
+  async signIn(authSignInDto: AuthSignInDto): Promise<User> {
+    const { username, password } = authSignInDto
+
+    const user = await this.userModel.findOne({ where: { username } })
+
+    if (!user) {
+      throw new BadRequestException("Invalid credentials")
+    }
+
+    const verifiedUser = await this.verifyPassword(user.password, password)
+    if (!verifiedUser) {
+      throw new BadRequestException("Invalid Credentials")
+    }
+    return user
   }
 
   async hashPassword(password: string): Promise<string> {
