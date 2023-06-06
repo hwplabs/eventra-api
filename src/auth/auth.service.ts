@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common"
 import { InjectModel } from "@nestjs/sequelize"
-import { User } from "./user.model"
+import { User } from "./models/user.model"
 import { AuthSignUpDto } from "./dto/auth-credentials.dto"
 import * as bcrypt from "@phc/bcrypt"
 
