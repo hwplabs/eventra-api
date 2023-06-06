@@ -14,6 +14,10 @@ export class AuthService {
       username,
       password: await this.hashPassword(password),
     })
+    // const user = new this.userModel()
+    // user.username = username
+    // user.password = await this.hashPassword(password)
+    // await user.save()
 
     return { msg: "User created" }
   }

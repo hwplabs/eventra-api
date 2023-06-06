@@ -7,7 +7,7 @@ import {
   Unique,
 } from "sequelize-typescript"
 
-@Table
+@Table({ timestamps: false })
 export class User extends Model {
   @PrimaryKey
   @Column({
