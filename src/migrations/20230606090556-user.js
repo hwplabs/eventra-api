@@ -15,7 +15,10 @@ module.exports = {
         primaryKey: true,
         defaultValue: Sequelize.DataTypes.UUIDV4,
       },
-      username: Sequelize.DataTypes.STRING,
+      username: {
+        type: Sequelize.DataTypes.STRING,
+        unique: true,
+      },
       password: Sequelize.DataTypes.STRING,
     })
   },

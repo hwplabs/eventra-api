@@ -16,8 +16,9 @@ export class User extends Model {
   })
   id: string
 
-  @Unique
-  @Column
+  @Column({
+    unique: true,
+  })
   username: string
 
   @Column
