@@ -8,7 +8,6 @@ import { User } from "./auth/user.model"
 
 @Module({
   imports: [
-    AuthModule,
     ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: "postgres",
@@ -17,10 +16,11 @@ import { User } from "./auth/user.model"
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User],
-      // autoLoadModels:true,
+      // models: [User],
+      autoLoadModels: true,
       synchronize: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
