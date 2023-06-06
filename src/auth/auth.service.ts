@@ -1,21 +1,21 @@
 import { Injectable } from "@nestjs/common"
 import { InjectModel } from "@nestjs/sequelize"
 import { User } from "./models/user.model"
-import { AuthSignUpDto } from "./dto/auth-credentials.dto"
+import { AuthSignUpDto } from "./dto/auth-signup.dto"
 import * as bcrypt from "@phc/bcrypt"
 
 @Injectable()
 export class AuthService {
   constructor(@InjectModel(User) private userModel: typeof User) {}
 
-  async signUp(authSignUpDto: AuthSignUpDto): Promise<User> {
+  async signUp(authSignUpDto: AuthSignUpDto): Promise<object> {
     const { username, password } = authSignUpDto
     const user = await this.userModel.create({
       username,
       password: await this.hashPassword(password),
     })
 
-    return user
+    return { msg: "User created" }
   }
 
   async hashPassword(password: string): Promise<string> {
