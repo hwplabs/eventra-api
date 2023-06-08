@@ -1,22 +1,9 @@
 "use strict"
+import * as organiserColumn from "./columns/organiserColumn"
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Organisers", {
-      id: {
-        primaryKey: true,
-        type: Sequelize.DataTypes.UUID,
-        defaultValue: Sequelize.DataTypes.UUIDV4,
-      },
-      name: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-      phoneNumber: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-    })
+    await queryInterface.createTable("Organisers", organiserColumn)
   },
 
   async down(queryInterface, Sequelize) {

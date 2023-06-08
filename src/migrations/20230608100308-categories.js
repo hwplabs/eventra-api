@@ -1,18 +1,9 @@
 "use strict"
+import * as categoryColumn from "./columns/categoryColumn"
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Categories", {
-      id: {
-        primaryKey: true,
-        type: Sequelize.DataTypes.UUID,
-        defaultValue: Sequelize.DataTypes.UUIDV4,
-      },
-      name: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-    })
+    await queryInterface.createTable("Categories", categoryColumn)
   },
 
   async down(queryInterface, Sequelize) {
