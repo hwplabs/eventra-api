@@ -1,17 +1,20 @@
 import {
-  Column,
-  Model,
   Table,
+  Model,
   PrimaryKey,
+  Column,
   DataType,
 } from "sequelize-typescript"
 
 @Table({ timestamps: false })
-export class Category extends Model {
+export class Organiser extends Model {
   @PrimaryKey
   @Column({ defaultValue: DataType.UUIDV4 })
   id: string
 
   @Column
   name: string
+
+  @Column
+  phoneNumber: string
 }
