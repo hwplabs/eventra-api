@@ -5,7 +5,8 @@ import { AuthModule } from "./auth/auth.module"
 import { ConfigModule } from "@nestjs/config"
 import { SequelizeModule } from "@nestjs/sequelize"
 // import { User } from "./auth/models/user.model"
-import { EventsModule } from './events/events.module';
+import { EventsModule } from "./events/events.module"
+import { CategoryModule } from "./category/category.module"
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { EventsModule } from './events/events.module';
     }),
     AuthModule,
     EventsModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
