@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from "@nestjs/common"
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common"
 import { InjectModel } from "@nestjs/sequelize"
 import { Organiser } from "./models/organiser.model"
 import { CreateOrganiserDto } from "./dto/create-organiser.dto"
@@ -37,7 +41,21 @@ export class OrganiserService {
     return await this.organiserModel.destroy({ where: { id: organiser.id } })
   }
 
-  // async updateCategory(id, updateOrganiserDto: UpdateOrganiserDto) {
+  async updateCategory(
+    id: string,
+    updateOrganiserDto: UpdateOrganiserDto,
+  ): Promise<Organiser> {
+    const { name, phoneNumber } = updateOrganiserDto
 
-  // }
+    if (!name || !phoneNumber) {
+      throw new BadRequestException("fill all neccessary fields")
+    }
+
+    const organiser = await this.getOrganiserById(id)
+
+    if (name) await organiser.update({ name })
+    if (phoneNumber) await organiser.update({ phoneNumber })
+
+    return organiser
+  }
 }
