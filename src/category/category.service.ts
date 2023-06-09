@@ -18,7 +18,7 @@ export class CategoryService {
   }
 
   async getCategoryById(id: string): Promise<Category> {
-    const category = await this.categoryModel.findOne({ where: { id: id } })
+    const category = await this.categoryModel.findOne({ where: { id } })
 
     if (!category) {
       throw new NotFoundException(`No category found with id: ${id}`)
