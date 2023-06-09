@@ -18,7 +18,7 @@ export class CategoryService {
   }
 
   async getCategoryById(id: string): Promise<Category> {
-    const category = await this.categoryModel.findOne({ where: { id } })
+    const category = await this.categoryModel.findOne({ where: { id: id } })
 
     if (!category) {
       throw new NotFoundException(`No category found with id: ${id}`)
@@ -36,9 +36,8 @@ export class CategoryService {
   }
 
   async deleteCategory(id: string): Promise<number> {
-    const result = await this.categoryModel.destroy({ where: { id: id } })
-
-    return result
+    const category = await this.getCategoryById(id)
+    return await this.categoryModel.destroy({ where: { id: category.id } })
 
     // if(result === 0) throw new NotFoundException()
   }
