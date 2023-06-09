@@ -7,6 +7,7 @@ import { SequelizeModule } from "@nestjs/sequelize"
 // import { User } from "./auth/models/user.model"
 import { EventsModule } from "./events/events.module"
 import { CategoryModule } from "./category/category.module"
+import { OrganiserModule } from './organiser/organiser.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CategoryModule } from "./category/category.module"
     AuthModule,
     EventsModule,
     CategoryModule,
+    OrganiserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
