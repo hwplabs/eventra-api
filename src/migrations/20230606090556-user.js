@@ -1,9 +1,25 @@
 "use strict"
-import * as userColumn from "./columns/userColumn"
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", userColumn)
+    await queryInterface.createTable("Users", {
+      id: {
+        type: Sequelize.DataTypes.UUID,
+        primaryKey: true,
+      },
+      username: {
+        type: Sequelize.DataTypes.STRING,
+        unique: true,
+      },
+      email: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      password: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+    })
   },
 
   async down(queryInterface, Sequelize) {
