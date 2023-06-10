@@ -1,5 +1,4 @@
 "use strict"
-import * as eventColumn from "./columns/eventColumn"
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -22,20 +21,21 @@ module.exports = {
       },
       date: {
         type: Sequelize.DataTypes.STRING,
-        defaultValue: new Date().toLocaleDateString(),
+        allowNull: false,
       },
       time: {
         type: Sequelize.DataTypes.STRING,
-        defaultValue: new Date().toLocaleTimeString(),
+        allowNull: false,
       },
       venue: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
-      gateFee: {
+      gatePass: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
+      eventImage: Sequelize.DataTypes.BLOB,
     })
   },
 

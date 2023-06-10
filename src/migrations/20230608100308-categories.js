@@ -1,5 +1,4 @@
 "use strict"
-import * as categoryColumn from "./columns/categoryColumn"
 
 module.exports = {
   async up(queryInterface, Sequelize) {
