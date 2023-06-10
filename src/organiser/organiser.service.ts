@@ -41,7 +41,7 @@ export class OrganiserService {
     return await this.organiserModel.destroy({ where: { id: organiser.id } })
   }
 
-  async updateCategory(
+  async updateOrganiser(
     id: string,
     updateOrganiserDto: UpdateOrganiserDto,
   ): Promise<Organiser> {

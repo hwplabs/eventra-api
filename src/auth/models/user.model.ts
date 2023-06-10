@@ -4,7 +4,6 @@ import {
   Table,
   PrimaryKey,
   DataType,
-  Unique,
 } from "sequelize-typescript"
 
 @Table({ timestamps: false })
