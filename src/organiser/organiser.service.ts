@@ -47,7 +47,7 @@ export class OrganiserService {
   ): Promise<Organiser> {
     const { name, phoneNumber } = updateOrganiserDto
 
-    if (!name || !phoneNumber) {
+    if (!name && !phoneNumber) {
       throw new BadRequestException("fill all neccessary fields")
     }
 

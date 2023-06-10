@@ -7,14 +7,17 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
   ValidationPipe,
 } from "@nestjs/common"
 import { OrganiserService } from "./organiser.service"
 import { Organiser } from "./models/organiser.model"
 import { CreateOrganiserDto } from "./dto/create-organiser.dto"
 import { UpdateOrganiserDto } from "./dto/update-organiser.dto"
+import { AuthGuard } from "@nestjs/passport"
 
 @Controller("organiser")
+@UseGuards(AuthGuard())
 export class OrganiserController {
   constructor(private organiserService: OrganiserService) {}
 
