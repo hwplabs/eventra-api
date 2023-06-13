@@ -12,7 +12,10 @@ import { Category } from "src/category/models/category.model"
 @Table({ timestamps: false })
 export class Event extends Model {
   @PrimaryKey
-  @Column({ defaultValue: DataType.UUIDV4 })
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+  })
   id: string
 
   @Column

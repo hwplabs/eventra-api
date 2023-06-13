@@ -9,7 +9,10 @@ import {
 @Table({ timestamps: false })
 export class Organiser extends Model {
   @PrimaryKey
-  @Column({ defaultValue: DataType.UUIDV4 })
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+  })
   id: string
 
   @Column

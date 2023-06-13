@@ -58,6 +58,8 @@ export class EventsService {
     if (venue) event.venue = venue
     if (eventImage !== undefined) event.eventImage = eventImage
 
+    await event.save()
+
     return event
   }
 
