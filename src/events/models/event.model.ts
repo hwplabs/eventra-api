@@ -34,5 +34,5 @@ export class Event extends Model {
   gatePass: string
 
   @Column({ type: DataType.BLOB })
-  eventImage: string
+  eventImage: unknown
 }

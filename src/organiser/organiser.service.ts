@@ -36,11 +36,6 @@ export class OrganiserService {
     return organiser
   }
 
-  async deleteOrganiser(id: string) {
-    const organiser = await this.getOrganiserById(id)
-    return await this.organiserModel.destroy({ where: { id: organiser.id } })
-  }
-
   async updateOrganiser(
     id: string,
     updateOrganiserDto: UpdateOrganiserDto,
@@ -57,5 +52,10 @@ export class OrganiserService {
     if (phoneNumber) await organiser.update({ phoneNumber })
 
     return organiser
+  }
+
+  async deleteOrganiser(id: string) {
+    const organiser = await this.getOrganiserById(id)
+    return await this.organiserModel.destroy({ where: { id: organiser.id } })
   }
 }
