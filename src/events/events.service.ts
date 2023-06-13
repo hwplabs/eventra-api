@@ -53,7 +53,7 @@ export class EventsService {
 
     if (title) event.title = title
     if (description) event.description = description
-    if (category) event.category = category
+    // if (category) event.category = category
     if (gatePass) event.gatePass = gatePass
     if (venue) event.venue = venue
     if (eventImage !== undefined) event.eventImage = eventImage

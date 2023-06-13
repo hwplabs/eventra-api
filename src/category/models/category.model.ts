@@ -4,7 +4,9 @@ import {
   Table,
   PrimaryKey,
   DataType,
+  HasMany,
 } from "sequelize-typescript"
+import { Event } from "src/events/models/event.model"
 
 @Table({ timestamps: false })
 export class Category extends Model {
@@ -14,4 +16,7 @@ export class Category extends Model {
 
   @Column
   name: string
+
+  @HasMany(() => Event)
+  events: Event[]
 }

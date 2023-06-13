@@ -1,10 +1,13 @@
 import {
+  BelongsTo,
   Column,
   DataType,
+  ForeignKey,
   Model,
   PrimaryKey,
   Table,
 } from "sequelize-typescript"
+import { Category } from "src/category/models/category.model"
 
 @Table({ timestamps: false })
 export class Event extends Model {
@@ -17,9 +20,6 @@ export class Event extends Model {
 
   @Column
   description: string
-
-  @Column
-  category: string
 
   @Column({ defaultValue: new Date().toLocaleDateString() })
   date: string
@@ -35,4 +35,11 @@ export class Event extends Model {
 
   @Column({ type: DataType.BLOB })
   eventImage: any
+
+  @ForeignKey(() => Category)
+  @Column
+  categoryId: string
+
+  @BelongsTo(() => Category)
+  category: Category
 }

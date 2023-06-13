@@ -7,7 +7,7 @@ import { SequelizeModule } from "@nestjs/sequelize"
 // import { User } from "./auth/models/user.model"
 import { EventsModule } from "./events/events.module"
 import { CategoryModule } from "./category/category.module"
-import { OrganiserModule } from './organiser/organiser.module';
+import { OrganiserModule } from "./organiser/organiser.module"
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { OrganiserModule } from './organiser/organiser.module';
       database: process.env.DB_NAME,
       // models: [User],
       autoLoadModels: true,
-      synchronize: false,
+      synchronize: true,
     }),
     AuthModule,
     EventsModule,
