@@ -48,7 +48,7 @@ export class EventsService {
 
     const event = await this.getEventById(id)
 
-    if (updateEventBody.length === 0)
+    if (updateEventBody.length === 0 && eventImage === undefined)
       throw new BadRequestException("Fill all required fields")
 
     if (title) event.title = title
