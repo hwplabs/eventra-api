@@ -17,7 +17,7 @@ import { UpdateOrganiserDto } from "./dto/update-organiser.dto"
 import { AuthGuard } from "@nestjs/passport"
 
 @Controller("organiser")
-@UseGuards(AuthGuard())
+// @UseGuards(AuthGuard())
 export class OrganiserController {
   constructor(private organiserService: OrganiserService) {}
 
