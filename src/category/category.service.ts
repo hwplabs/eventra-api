@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common"
 import { InjectModel } from "@nestjs/sequelize"
 import { Category } from "./models/category.model"
 import { CategoryDto } from "./dto/category.dto"
+import * as lodash from "lodash"
 
 @Injectable()
 export class CategoryService {
@@ -9,7 +10,9 @@ export class CategoryService {
 
   async createCategory(categoryDto: CategoryDto): Promise<Category> {
     const { name } = categoryDto
-    const category = await this.categoryModel.create({ name })
+    const category = await this.categoryModel.create({
+      name: lodash.startCase(name),
+    })
     return category
   }
 
@@ -30,7 +33,7 @@ export class CategoryService {
   async updateCategory(id: string, categoryDto: CategoryDto) {
     const { name } = categoryDto
     const category = await this.getCategoryById(id)
-    category.name = name
+    category.name = lodash.startCase(name)
     await category.save()
     return category
   }

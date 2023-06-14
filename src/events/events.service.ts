@@ -3,10 +3,14 @@ import { InjectModel } from "@nestjs/sequelize"
 import { Event } from "./models/event.model"
 import { CreateEventDto } from "./dto/create-event.dto"
 import { UpdateEventDto } from "./dto/update-event.dto"
+import { Category } from "src/category/models/category.model"
 
 @Injectable()
 export class EventsService {
-  constructor(@InjectModel(Event) private eventModel: typeof Event) {}
+  constructor(
+    @InjectModel(Event) private eventModel: typeof Event,
+    @InjectModel(Category) private categoryModel: typeof Category,
+  ) {}
 
   async createEvent(
     createEventDto: CreateEventDto,

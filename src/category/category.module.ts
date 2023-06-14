@@ -9,5 +9,6 @@ import { AuthModule } from "src/auth/auth.module"
   imports: [SequelizeModule.forFeature([Category]), AuthModule],
   controllers: [CategoryController],
   providers: [CategoryService],
+  exports: [SequelizeModule],
 })
 export class CategoryModule {}
