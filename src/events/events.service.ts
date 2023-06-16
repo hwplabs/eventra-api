@@ -4,6 +4,7 @@ import { Event } from "./models/event.model"
 import { CreateEventDto } from "./dto/create-event.dto"
 import { UpdateEventDto } from "./dto/update-event.dto"
 import { Category } from "src/category/models/category.model"
+import * as caseChange from "to-case"
 
 @Injectable()
 export class EventsService {
@@ -17,21 +18,24 @@ export class EventsService {
     eventImage: Express.Multer.File,
   ): Promise<Event> {
     const { title, description, category, venue, gatePass } = createEventDto
+    const catg = await this.getCategory(category)
 
     const event = await this.eventModel.create({
-      title,
+      title: caseChange.title(title),
       description,
-      category,
       venue,
       gatePass,
       eventImage,
+      categoryId: catg.id,
     })
+
+    await delete event.eventImage
 
     return event
   }
 
   async getEvents(): Promise<Event[]> {
-    return await this.eventModel.findAll()
+    return await this.eventModel.findAll({ include: Category })
   }
 
   async getEventById(id: string): Promise<Event> {
@@ -55,7 +59,7 @@ export class EventsService {
     if (updateEventBody.length === 0 && eventImage === undefined)
       throw new BadRequestException("Fill all required fields")
 
-    if (title) event.title = title
+    if (title) event.title = caseChange.title(title)
     if (description) event.description = description
     // if (category) event.category = category
     if (gatePass) event.gatePass = gatePass
@@ -70,5 +74,16 @@ export class EventsService {
   async deleteEvent(id: string): Promise<number> {
     const event = await this.getEventById(id)
     return await this.eventModel.destroy({ where: { id: event.id } })
+  }
+
+  async getCategory(category: string) {
+    const catg = await this.categoryModel.findOne({
+      where: {
+        name: caseChange.capital(category),
+      },
+    })
+    if (!category) throw new BadRequestException(`No such category exists `)
+
+    return catg
   }
 }

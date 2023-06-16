@@ -10,5 +10,6 @@ import { CategoryModule } from "src/category/category.module"
   imports: [SequelizeModule.forFeature([Event]), AuthModule, CategoryModule],
   controllers: [EventsController],
   providers: [EventsService],
+  exports: [SequelizeModule],
 })
 export class EventsModule {}

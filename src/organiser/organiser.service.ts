@@ -1,4 +1,4 @@
-import * as lodash from "lodash"
+import * as caseChange from "to-case"
 import {
   BadRequestException,
   Injectable,
@@ -20,7 +20,7 @@ export class OrganiserService {
   ): Promise<Organiser> {
     const { name, phoneNumber } = createOrganiserDto
     const organiser = await this.organiserModel.create({
-      name: lodash.startCase(name),
+      name: caseChange.title(name),
       phoneNumber,
     })
     return organiser
@@ -52,7 +52,7 @@ export class OrganiserService {
 
     const organiser = await this.getOrganiserById(id)
 
-    if (name) await organiser.update({ name: lodash.startCase(name) })
+    if (name) await organiser.update({ name: caseChange.title(name) })
     if (phoneNumber) await organiser.update({ phoneNumber })
 
     return organiser

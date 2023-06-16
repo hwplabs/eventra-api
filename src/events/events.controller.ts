@@ -58,4 +58,9 @@ export class EventsController {
   deleteEvent(@Param("id") id: string) {
     return this.eventService.deleteEvent(id)
   }
+
+  @Post("test")
+  testCategory(@Body("category") category: string) {
+    return this.eventService.getCategory(category)
+  }
 }
