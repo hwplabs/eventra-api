@@ -8,6 +8,7 @@ import {
   Table,
 } from "sequelize-typescript"
 import { Category } from "src/category/models/category.model"
+import { Organiser } from "src/organiser/models/organiser.model"
 
 @Table({ timestamps: false })
 export class Event extends Model {
@@ -45,4 +46,11 @@ export class Event extends Model {
 
   @BelongsTo(() => Category)
   category: Category
+
+  @ForeignKey(() => Organiser)
+  @Column
+  organiserId: string
+
+  @BelongsTo(() => Organiser)
+  organiser: Organiser
 }

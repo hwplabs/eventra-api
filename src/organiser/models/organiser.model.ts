@@ -4,7 +4,9 @@ import {
   PrimaryKey,
   Column,
   DataType,
+  HasMany,
 } from "sequelize-typescript"
+import { Event } from "src/events/models/event.model"
 
 @Table({ timestamps: false })
 export class Organiser extends Model {
@@ -20,4 +22,7 @@ export class Organiser extends Model {
 
   @Column
   phoneNumber: string
+
+  @HasMany(() => Event)
+  events: Event[]
 }
