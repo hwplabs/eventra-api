@@ -4,10 +4,12 @@ import {
   Table,
   PrimaryKey,
   DataType,
+  HasMany,
 } from "sequelize-typescript"
+import { Event } from "src/events/models/event.model"
 
 @Table({ timestamps: false })
-export class User extends Model {
+export class Category extends Model {
   @PrimaryKey
   @Column({
     type: DataType.UUID,
@@ -15,11 +17,9 @@ export class User extends Model {
   })
   id: string
 
-  @Column({
-    unique: true,
-  })
-  username: string
-
   @Column
-  password: string
+  name: string
+
+  @HasMany(() => Event)
+  events: Event[]
 }
