@@ -5,20 +5,24 @@ import { CreateEventDto } from "./dto/create-event.dto"
 import { UpdateEventDto } from "./dto/update-event.dto"
 import { Category } from "src/category/models/category.model"
 import * as caseChange from "to-case"
+import { Organiser } from "src/organiser/models/organiser.model"
 
 @Injectable()
 export class EventsService {
   constructor(
     @InjectModel(Event) private eventModel: typeof Event,
     @InjectModel(Category) private categoryModel: typeof Category,
+    @InjectModel(Organiser) private organiserModel: typeof Organiser,
   ) {}
 
   async createEvent(
     createEventDto: CreateEventDto,
     eventImage: Express.Multer.File,
   ): Promise<Event> {
-    const { title, description, category, venue, gatePass } = createEventDto
-    const catg = await this.getCategory(category)
+    const { title, description, category, venue, gatePass, organiser } =
+      createEventDto
+    const foundCategory = await this.getCategory(category)
+    const foundOrganiser = await this.getOrganiser(organiser)
 
     const event = await this.eventModel.create({
       title: caseChange.title(title),
@@ -26,7 +30,8 @@ export class EventsService {
       venue,
       gatePass,
       eventImage,
-      categoryId: catg.id,
+      categoryId: foundCategory.id,
+      organiserId: foundOrganiser.id,
     })
 
     await delete event.eventImage
@@ -51,20 +56,24 @@ export class EventsService {
     updateEventDto: UpdateEventDto,
     eventImage?: Express.Multer.File,
   ): Promise<Event> {
-    const { title, description, category, gatePass, venue } = updateEventDto
+    const { title, description, category, gatePass, venue, organiser } =
+      updateEventDto
     const updateEventBody = Object.keys(updateEventDto)
 
     const event = await this.getEventById(id)
+    const foundCategory = await this.getCategory(category)
+    const foundOrganiser = await this.getOrganiser(organiser)
 
     if (updateEventBody.length === 0 && eventImage === undefined)
       throw new BadRequestException("Fill all required fields")
 
     if (title) event.title = caseChange.title(title)
     if (description) event.description = description
-    // if (category) event.category = category
     if (gatePass) event.gatePass = gatePass
     if (venue) event.venue = venue
     if (eventImage !== undefined) event.eventImage = eventImage
+    if (category) event.categoryId = foundCategory.id
+    if (organiser) event.organiserId = foundOrganiser.id
 
     await event.save()
 
@@ -76,14 +85,27 @@ export class EventsService {
     return await this.eventModel.destroy({ where: { id: event.id } })
   }
 
-  async getCategory(category: string) {
-    const catg = await this.categoryModel.findOne({
+  async getCategory(category: string): Promise<Category> {
+    const foundCategory = await this.categoryModel.findOne({
       where: {
         name: caseChange.capital(category),
       },
     })
-    if (!category) throw new BadRequestException(`No such category exists `)
+    if (!foundCategory)
+      throw new BadRequestException(`No such category exists `)
 
-    return catg
+    return foundCategory
+  }
+
+  async getOrganiser(organiser: string): Promise<Organiser> {
+    const foundOrganiser = await this.organiserModel.findOne({
+      where: {
+        name: caseChange.title(organiser),
+      },
+    })
+    if (!foundOrganiser)
+      throw new BadRequestException(`No such Organiser exists `)
+
+    return foundOrganiser
   }
 }

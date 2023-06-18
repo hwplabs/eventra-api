@@ -20,4 +20,8 @@ export class UpdateEventDto {
   @IsString()
   @IsOptional()
   gatePass: string
+
+  @IsString()
+  @IsOptional()
+  organiser: string
 }

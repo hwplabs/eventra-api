@@ -20,4 +20,8 @@ export class CreateEventDto {
   @IsString()
   @IsNotEmpty({ message: "$property cannot be empty" })
   gatePass: string
+
+  @IsString()
+  @IsNotEmpty({ message: "$property cannot be empty" })
+  organiser: string
 }

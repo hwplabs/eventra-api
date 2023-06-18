@@ -8,11 +8,13 @@ import { InjectModel } from "@nestjs/sequelize"
 import { Organiser } from "./models/organiser.model"
 import { CreateOrganiserDto } from "./dto/create-organiser.dto"
 import { UpdateOrganiserDto } from "./dto/update-organiser.dto"
+import { Event } from "src/events/models/event.model"
 
 @Injectable()
 export class OrganiserService {
   constructor(
     @InjectModel(Organiser) private organiserModel: typeof Organiser,
+    @InjectModel(Event) private eventModel: typeof Event,
   ) {}
 
   async createOrganiser(
@@ -27,7 +29,7 @@ export class OrganiserService {
   }
 
   async getOrganiser(): Promise<Organiser[]> {
-    return await this.organiserModel.findAll()
+    return await this.organiserModel.findAll({ include: Event })
   }
 
   async getOrganiserById(id: string): Promise<Organiser> {
