@@ -23,6 +23,7 @@ export class OrganiserService {
     const { name, phoneNumber } = createOrganiserDto
     const organiser = await this.organiserModel.create({
       name: caseChange.title(name),
+      // name,
       phoneNumber,
     })
     return organiser

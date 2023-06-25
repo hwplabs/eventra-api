@@ -34,8 +34,6 @@ export class EventsService {
       organiserId: foundOrganiser.id,
     })
 
-    await delete event.eventImage
-
     return event
   }
 
@@ -61,8 +59,6 @@ export class EventsService {
     const updateEventBody = Object.keys(updateEventDto)
 
     const event = await this.getEventById(id)
-    const foundCategory = await this.getCategory(category)
-    const foundOrganiser = await this.getOrganiser(organiser)
 
     if (updateEventBody.length === 0 && eventImage === undefined)
       throw new BadRequestException("Fill all required fields")
@@ -72,8 +68,14 @@ export class EventsService {
     if (gatePass) event.gatePass = gatePass
     if (venue) event.venue = venue
     if (eventImage !== undefined) event.eventImage = eventImage
-    if (category) event.categoryId = foundCategory.id
-    if (organiser) event.organiserId = foundOrganiser.id
+    if (category) {
+      const foundCategory = await this.getCategory(category)
+      event.categoryId = foundCategory.id
+    }
+    if (organiser) {
+      const foundOrganiser = await this.getOrganiser(organiser)
+      event.organiserId = foundOrganiser.id
+    }
 
     await event.save()
 
@@ -88,6 +90,7 @@ export class EventsService {
   async getCategory(category: string): Promise<Category> {
     const foundCategory = await this.categoryModel.findOne({
       where: {
+        // name: category,
         name: caseChange.capital(category),
       },
     })
@@ -97,9 +100,10 @@ export class EventsService {
     return foundCategory
   }
 
-  async getOrganiser(organiser: string): Promise<Organiser> {
+  async getOrganiser(organiser: string) {
     const foundOrganiser = await this.organiserModel.findOne({
       where: {
+        // name: organiser,
         name: caseChange.title(organiser),
       },
     })

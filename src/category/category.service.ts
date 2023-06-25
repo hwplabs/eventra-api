@@ -15,6 +15,7 @@ export class CategoryService {
   async createCategory(categoryDto: CategoryDto): Promise<Category> {
     const { name } = categoryDto
     const category = await this.categoryModel.create({
+      // name,
       name: caseChange.capital(name),
     })
     return category
@@ -37,8 +38,9 @@ export class CategoryService {
   async updateCategory(id: string, categoryDto: CategoryDto) {
     const { name } = categoryDto
     const category = await this.getCategoryById(id)
-    category.name = caseChange.capital(name)
-    await category.save()
+    // category.name = caseChange.capital(name)
+    // category.name = name
+    await category.update({ name: caseChange.capital(name) })
     return category
   }
 
