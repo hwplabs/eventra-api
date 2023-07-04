@@ -20,6 +20,6 @@ export class Category extends Model {
   @Column
   name: string
 
-  @HasMany(() => Event)
-  events: Event[]
+  // @HasMany(() => Event)
+  // events: Event[]
 }

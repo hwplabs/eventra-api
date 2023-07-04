@@ -40,12 +40,12 @@ export class Event extends Model {
   @Column({ type: DataType.BLOB })
   eventImage: any
 
-  @ForeignKey(() => Category)
-  @Column
-  categoryId: string
+  // @ForeignKey(() => Category)
+  // @Column
+  // categoryId: string
 
-  @BelongsTo(() => Category)
-  category: Category
+  // @BelongsTo(() => Category)
+  // category: Category
 
   @ForeignKey(() => Organiser)
   @Column

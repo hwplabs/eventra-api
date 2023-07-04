@@ -22,6 +22,7 @@ import { OrganiserModule } from "./organiser/organiser.module"
       // models: [User],
       autoLoadModels: true,
       synchronize: true,
+      // sync: { alter: true },
     }),
     AuthModule,
     EventsModule,

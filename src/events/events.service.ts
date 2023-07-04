@@ -70,11 +70,11 @@ export class EventsService {
     if (eventImage !== undefined) event.eventImage = eventImage
     if (category) {
       const foundCategory = await this.getCategory(category)
-      event.categoryId = foundCategory.id
+      // event.categoryId = foundCategory.id
     }
     if (organiser) {
       const foundOrganiser = await this.getOrganiser(organiser)
-      event.organiserId = foundOrganiser.id
+      // event.organiserId = foundOrganiser.id
     }
 
     await event.save()

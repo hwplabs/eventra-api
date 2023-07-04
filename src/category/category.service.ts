@@ -25,6 +25,10 @@ export class CategoryService {
     return await this.categoryModel.findAll({ include: Event })
   }
 
+  async getCategories(): Promise<Category[]> {
+    return await this.categoryModel.findAll()
+  }
+
   async getCategoryById(id: string): Promise<Category> {
     const category = await this.categoryModel.findOne({ where: { id } })
 

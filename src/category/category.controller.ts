@@ -22,8 +22,13 @@ export class CategoryController {
 
   @Get()
   getAllCategories(): Promise<Category[]> {
-    return this.categoryService.getCategory()
+    return this.categoryService.getCategories()
   }
+
+  // @Get("/with")
+  // getAllCategoryWithEvents(): Promise<Category[]> {
+  //   return this.categoryService.getCategory()
+  // }
 
   @Get(":id")
   getCategory(@Param("id") id: string): Promise<Category> {

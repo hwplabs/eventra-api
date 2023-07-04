@@ -51,7 +51,7 @@ export class AuthService {
 
     const payload: JwtPayload = { username }
     const token = await this.jwtService.sign(payload)
-    return { token, message: `Welcome ${username}` }
+    return { token, message: `Welcome ${username}`, verifiedUser }
   }
 
   async hashPassword(password: string): Promise<string> {

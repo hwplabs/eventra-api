@@ -20,6 +20,23 @@ export class User extends Model {
   })
   username: string
 
+  @Column({
+    unique: true,
+  })
+  email: string
+
   @Column
   password: string
+
+  @Column
+  notes: string
+
+  @Column({
+    type: DataType.ENUM,
+    values: ["active", "disabled"],
+  })
+  status: string
+
+  @Column({ type: DataType.BLOB })
+  avatar: any
 }
