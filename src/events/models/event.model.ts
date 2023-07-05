@@ -7,7 +7,7 @@ import {
   PrimaryKey,
   Table,
 } from "sequelize-typescript"
-import { Category } from "src/category/entity/category.model"
+import { Category } from "src/category/models/category.model"
 import { Organiser } from "src/organiser/models/organiser.model"
 
 @Table({ timestamps: false })

@@ -3,7 +3,7 @@ import { InjectModel } from "@nestjs/sequelize"
 import { Event } from "./models/event.model"
 import { CreateEventDto } from "./dto/create-event.dto"
 import { UpdateEventDto } from "./dto/update-event.dto"
-import { Category } from "src/category/entity/category.model"
+import { Category } from "src/category/models/category.model"
 import * as caseChange from "to-case"
 import { Organiser } from "src/organiser/models/organiser.model"
 

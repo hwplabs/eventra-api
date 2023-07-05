@@ -12,7 +12,7 @@ import {
 } from "@nestjs/common"
 import { CategoryService } from "./category.service"
 import { CategoryDto } from "./dto/category.dto"
-import { Category } from "./entity/category.model"
+import { Category } from "./models/category.model"
 import { AuthGuard } from "@nestjs/passport"
 
 @Controller("category")
