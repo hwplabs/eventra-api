@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common"
 import { CategoryController } from "./category.controller"
 import { CategoryService } from "./category.service"
 import { SequelizeModule } from "@nestjs/sequelize"
-import { Category } from "./models/category.model"
+import { Category } from "./entity/category.model"
 import { AuthModule } from "src/auth/auth.module"
 import { Event } from "src/events/models/event.model"
 

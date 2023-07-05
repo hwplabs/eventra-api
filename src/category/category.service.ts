@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
 import { InjectModel } from "@nestjs/sequelize"
-import { Category } from "./models/category.model"
+import { Category } from "./entity/category.model"
 import { CategoryDto } from "./dto/category.dto"
 import * as caseChange from "to-case"
 import { Event } from "src/events/models/event.model"
