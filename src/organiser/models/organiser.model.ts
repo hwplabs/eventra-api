@@ -20,9 +20,6 @@ export class Organiser extends Model {
   @Column
   name: string
 
-  @Column
-  phoneNumber: string
-
   @HasMany(() => Event)
   events: Event[]
 }

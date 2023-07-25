@@ -2,9 +2,16 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
     await queryInterface.createTable("Events", {
       id: {
         type: Sequelize.DataTypes.UUID,
+        defaultValue: Sequelize.DataTypes.UUIDV4,
         primaryKey: true,
       },
       title: {
@@ -15,10 +22,7 @@ module.exports = {
         type: Sequelize.DataTypes.TEXT,
         allowNull: false,
       },
-      category: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
+
       date: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
@@ -35,11 +39,16 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
-      eventImage: Sequelize.DataTypes.BLOB,
     })
   },
 
   async down(queryInterface, Sequelize) {
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
     await queryInterface.dropTable("Events")
   },
 }

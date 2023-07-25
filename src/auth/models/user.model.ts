@@ -29,6 +29,12 @@ export class User extends Model {
   password: string
 
   @Column
+  phoneNumber: string
+
+  @Column
+  organiserName: string
+
+  @Column
   notes: string
 
   @Column({

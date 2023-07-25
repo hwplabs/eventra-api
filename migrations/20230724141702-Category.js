@@ -2,20 +2,13 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("Categories", {
       id: {
         type: Sequelize.DataTypes.UUID,
+        defaultValue: Sequelize.DataTypes.UUIDV4,
         primaryKey: true,
       },
-      username: {
-        type: Sequelize.DataTypes.STRING,
-        unique: true,
-      },
-      email: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-      password: {
+      name: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
@@ -23,6 +16,12 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users")
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+    await queryInterface.dropTable("Categories")
   },
 }

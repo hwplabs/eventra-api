@@ -21,7 +21,7 @@ import { OrganiserModule } from "./organiser/organiser.module"
       database: process.env.DB_NAME,
       // models: [User],
       autoLoadModels: true,
-      synchronize: true,
+      synchronize: false,
       // sync: { alter: true },
     }),
     AuthModule,
