@@ -7,9 +7,9 @@ import { Event } from "src/events/models/event.model"
 import { Category } from "./models/category.model"
 
 @Module({
-  imports: [SequelizeModule.forFeature([Category]), AuthModule],
+  imports: [SequelizeModule.forFeature([Category, Event]), AuthModule],
   controllers: [CategoryController],
   providers: [CategoryService],
-  // exports: [SequelizeModule],
+  exports: [SequelizeModule],
 })
 export class CategoryModule {}

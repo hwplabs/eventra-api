@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Bookmarked_Events", {
+    await queryInterface.createTable("Rsvped_Events", {
       userId: {
         type: Sequelize.DataTypes.UUID,
         references: {
@@ -25,6 +25,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Bookmarked_Events")
+    await queryInterface.dropTable("Rsvped_Events")
   },
 }

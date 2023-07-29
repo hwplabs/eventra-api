@@ -32,10 +32,6 @@ module.exports = {
         notes: {
           type: Sequelize.DataTypes.STRING,
         },
-        status: {
-          type: Sequelize.DataTypes.ENUM,
-          values: ["active", "disabled"],
-        },
         avatar: {
           type: Sequelize.DataTypes.BLOB,
         },
