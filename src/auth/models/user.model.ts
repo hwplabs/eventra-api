@@ -11,7 +11,6 @@ export class User extends Model {
   @PrimaryKey
   @Column({
     type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
   })
   id: string
 
@@ -37,12 +36,11 @@ export class User extends Model {
   @Column
   notes: string
 
-  @Column({
-    type: DataType.ENUM,
-    values: ["active", "disabled"],
-  })
-  status: string
-
   @Column({ type: DataType.BLOB })
   avatar: any
+
+  @Column({
+    type: DataType.UUID,
+  })
+  statusId: string
 }
